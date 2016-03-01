@@ -1,12 +1,15 @@
-
-(defconst func-regexp "func\s-*([^\)]*\)\s\\(\\w*\\)")
+(defconst func-regexp "\\(func\s-*([^\)]*\)\s\\(\\w*\\)\\|func\\s-*\\(\\w*\\)\\)")
 
 ; Return all go functions found in the selected region
 (defun go-functions (string)
   (save-match-data
     (let ((pos 0) functions)
       (while (string-match func-regexp string pos)
-        (push (match-string 1 string) functions)
+        (let ((f (match-string 2 string))
+          (g (match-string 3 string)))
+          (cond
+           ((not(null f))(push f functions))
+           ((not(null g))(push g functions))))
         (setq pos (match-end 0)))
       functions)))
 
@@ -22,8 +25,10 @@
   (gen-if-not-test 
    (lambda() (call-process "gotests" nil nil nil "-all" "-w" buffer-file-name))))
 
-; Generate tests for all go functions in region
+; Generate all missing go tests in region
 (defun gotests-region()
   (interactive)
   (gen-if-not-test 
    (lambda() (call-process "gotests" nil nil nil "-w" "-only" (mapconcat 'identity (go-functions (buffer-substring (region-beginning) (region-end))) "|") buffer-file-name))))
+
+
