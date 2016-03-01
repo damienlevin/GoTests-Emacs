@@ -1,6 +1,6 @@
 # GoTests-Emacs [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](https://github.com/cweill/GoTests-Sublime/blob/master/LICENSE)
 
-`GoTests-Emacs` is a plugin for Emacs for automatically generating [table driven tests](https://github.com/golang/go/wiki/TableDrivenTests). It uses [`gotests`](https://github.com/cweill/gotests) to generate missing tests based on its target source files' function and method signatures. Any new dependencies in the test files are automatically imported.
+`GoTests-Emacs` is a package for Emacs for automatically generating [table driven tests](https://github.com/golang/go/wiki/TableDrivenTests). It uses [`gotests`](https://github.com/cweill/gotests) to generate missing tests based on its target source files' function and method signatures. Any new dependencies in the test files are automatically imported.
 
 ## Demo
 
@@ -11,6 +11,18 @@
 __Prequisite:__ Use [`go get`](https://golang.org/cmd/go/#hdr-Download_and_install_packages_and_dependencies) to install and update the `gotests` tool:
 ```sh
 $ go get -u github.com/cweill/gotests/...
+```
+
+Next, copy GoTests-Emacs in your .emacs directory
+```
+cd ~/.emacs.d
+wget https://github.com/damienlevin/GoTests-Emacs/blob/master/gotests.el
+```
+In your .emacs add the following:
+```
+;; gotests
+(add-to-list 'load-path "~/.emacs.d/")
+(require 'gotests)
 ```
 
 ## Usage
