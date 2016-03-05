@@ -16,7 +16,7 @@ $ go get -u github.com/cweill/gotests/...
 Next, copy GoTests-Emacs in your .emacs directory
 ```
 cd ~/.emacs.d
-wget https://github.com/damienlevin/GoTests-Emacs/blob/master/gotests.el
+wget https://raw.githubusercontent.com/damienlevin/GoTests-Emacs/master/gotests.el
 ```
 In your .emacs add the following:
 ```
