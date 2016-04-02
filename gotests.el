@@ -4,14 +4,14 @@
 
 ;; Author: Damien Levin
 ;; Keywords: go gotests languages 
-;; Version: 0.0.1
+;; Version: 0.0.2
 ;; URL: https://github.com/damienlevin/GoTests-Emacs/blob/master/gotests.el
 
 ;; Apache License (version 2.0).
 
 ;;; Code:
 
-(defconst func-regexp "\\_<\\(func\s-*([^\)]*\)\s\\(\\w*\\)\\|func\\s-*\\(\\w*\\)\\)\\_>")
+(defconst func-regexp "\\_<\\(func\\s-([^\)]*\)\s\\(\\w*\\)\\|func\\s-\\(\\w*\\)\\)\\_>")
 
 ;; Return all go functions found in the selected region.
 (defun go-functions (string)
