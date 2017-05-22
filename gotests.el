@@ -36,13 +36,20 @@
 (defun gotests()
   (interactive)
   (gen-if-not-test 
-   (lambda() (call-process "gotests" nil nil nil "-all" "-w" buffer-file-name))))
+   (lambda() (progn
+               (call-process "gotests" nil nil nil "-all" "-w" buffer-file-name)
+               (message "Generated all of test codes.")))))
 
 ;; Generate all missing go tests in region.
 (defun gotests-region()
   (interactive)
   (gen-if-not-test 
-   (lambda() (call-process "gotests" nil nil nil "-w" "-only" (mapconcat 'identity (go-functions (buffer-substring (region-beginning) (region-end))) "|") buffer-file-name))))
+(defun gotests-region()
+  (interactive)
+  (gen-if-not-test
+   (lambda() (progn
+         (call-process "gotests" nil nil nil "-w" "-only" (mapconcat 'identity (go-functions (buffer-substring (region-beginning) (region-end))) "|") buffer-file-name)
+         (message "Generated a test code. See *_test.go file.")))))
 
 (provide 'gotests)
 ;;; gotests.el ends here
