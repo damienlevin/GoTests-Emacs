@@ -43,9 +43,6 @@
 ;; Generate all missing go tests in region.
 (defun gotests-region()
   (interactive)
-  (gen-if-not-test 
-(defun gotests-region()
-  (interactive)
   (gen-if-not-test
    (lambda() (progn
          (call-process "gotests" nil nil nil "-w" "-only" (mapconcat 'identity (go-functions (buffer-substring (region-beginning) (region-end))) "|") buffer-file-name)
